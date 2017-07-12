@@ -70,9 +70,9 @@ func Run(ctx *cli.Context) {
 	go pfmet.Run()
 	//////// Collectors
 	// Internal metrics
-	pci, err := qcollector_internal.New(qChan, cfg, "internal")
-	check_err(pci.Name, err)
-	go pci.Run()
+	pcint, err := qcollector_internal.New(qChan, cfg, "internal")
+	check_err(pcint.Name, err)
+	go pcint.Run()
 	// start docker-events
 	pcde, err := qcollector_docker_events.New(qChan, cfg, "docker-events")
 	check_err(pcde.Name, err)
