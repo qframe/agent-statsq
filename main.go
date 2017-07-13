@@ -80,7 +80,7 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "StatsQ agent (StatsD plus tags) to push metrics towards InfluxDB"
 	app.Usage = "statsq [options]"
-	app.Version = "0.0.0"
+	app.Version = "0.0.1"
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:  "config",
