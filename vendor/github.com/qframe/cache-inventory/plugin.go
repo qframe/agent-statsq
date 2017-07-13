@@ -1,7 +1,6 @@
 package qcache_inventory
 
 import (
-	"C"
 	"fmt"
 	"time"
 	"github.com/zpatrick/go-config"

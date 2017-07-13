@@ -10,8 +10,6 @@ import (
 	"github.com/qnib/qframe-types"
 	"github.com/qframe/cache-inventory"
 	"github.com/qframe/cache-statsq"
-	"github.com/qframe/filter-grok"
-	"github.com/qframe/filter-metrics"
 	"github.com/qframe/collector-tcp"
 	"github.com/qframe/collector-docker-events"
 	"github.com/qframe/handler-influxdb"
@@ -51,11 +49,7 @@ func Run(ctx *cli.Context) {
 	phi, err := qhandler_influxdb.New(qChan, cfg, "influxdb")
 	check_err(phi.Name, err)
 	go phi.Run()
-	//////// Filters
-	// GROK
-	pfm, err := qfilter_grok.New(qChan, cfg, "opentsdb")
-	check_err(pfm.Name, err)
-	go pfm.Run()
+	//////// Cache
 	// StatsQ
 	pfs, err := qcache_statsq.New(qChan, cfg, "statsq")
 	check_err(pfs.Name, err)
@@ -64,10 +58,6 @@ func Run(ctx *cli.Context) {
 	pci, err := qcache_inventory.New(qChan, cfg, "inventory")
 	check_err(pci.Name, err)
 	go pci.Run()
-	// Metrics
-	pfmet, err := qfilter_metrics.New(qChan, cfg, "metrics")
-	check_err(pfmet.Name, err)
-	go pfmet.Run()
 	//////// Collectors
 	// Internal metrics
 	pcint, err := qcollector_internal.New(qChan, cfg, "internal")
@@ -88,9 +78,9 @@ func Run(ctx *cli.Context) {
 
 func main() {
 	app := cli.NewApp()
-	app.Name = "ETC event collector based on qframe, inspired by qcollect,logstash and fullerite"
-	app.Usage = "qframe-metrics [options]"
-	app.Version = "0.0.1"
+	app.Name = "StatsQ agent (StatsD plus tags) to push metrics towards InfluxDB"
+	app.Usage = "statsq [options]"
+	app.Version = "0.0.0"
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:  "config",

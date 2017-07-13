@@ -1,0 +1,15 @@
+workspace:
+  base: /drone/src
+  path: /usr/local/src/github.com/qframe/agent-statsq
+
+pipeline:
+  alpine:
+    image: qnib/alplain-golang
+    commands:
+      - govendor fetch -v +m
+      - govendor build -o statsq_Alpine
+  x86:
+      image: qnib/uplain-golang
+      commands:
+        - govendor fetch -v +m
+        - govendor build -o statsq_x86

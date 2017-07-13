@@ -445,8 +445,10 @@
 			"revisionTime": "2017-05-05T04:36:39Z"
 		},
 		{
+			"checksumSHA1": "sZo+GGrUDJBFhCCs+K3Vrc24Nno=",
 			"path": "github.com/qframe/cache-inventory",
-			"revision": ""
+			"revision": "5a2490f4c53a8ab907668e64f8836fa9b3411dd5",
+			"revisionTime": "2017-07-12T08:05:45Z"
 		},
 		{
 			"checksumSHA1": "+iLh0tgGpd5fkL35FLmDe/wTa9M=",

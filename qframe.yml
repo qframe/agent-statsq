@@ -1,0 +1,27 @@
+---
+log:
+  level: "notice"
+  #only-plugins: "container-stats"
+
+collector:
+  docker-events:
+    docker-host: "unix:///var/run/docker.sock"
+  internal:
+  tcp:
+    bind-port: "8125"
+    bind-host: "0.0.0.0"
+
+cache:
+  statsq:
+    inputs: "tcp"
+    percentiles: "90,95,99"
+    send-metric-ms: 5000
+
+handler:
+  influxdb:
+    database: "qframe"
+    host: "127.0.0.1"
+    inputs: "internal,cache.statsq"
+    ticker-msec: "2000"
+    batch-size: "500"
+
